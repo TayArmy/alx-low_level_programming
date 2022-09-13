@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * _islower - Checks for lower case alphabet
  * @c: Character to be checked
