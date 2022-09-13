@@ -1,3 +1,5 @@
+void _putchar(char);
+
 /**
  * _islower - Checks for lower case alphabet
  * @c: Character to be checked
