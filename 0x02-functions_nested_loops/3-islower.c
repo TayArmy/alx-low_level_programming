@@ -3,13 +3,11 @@
 /**
  * _islower - Checks for lower case alphabet
  * @c: Character to be checked
- * Return: if character is lowercase, 0 therwise
+ * Return: 0 or 1
  */
 
 int _islower(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	else
-		return (0);
+	return (c >= 97 && c <= 122);
+
 }
