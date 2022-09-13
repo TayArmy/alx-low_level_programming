@@ -1,15 +1,13 @@
-void _putchar(char);
+#include "main.h"
 
 /**
- * _islower - Checks for lower case alphabet
- * @c: Character to be checked
- * Return: if character is lowercase, 0 otherwise
+ * _islower - check for lower case letter
+ * @c : character to check the case
+ * Return:0 or 1
  */
 
 int _islower(int c)
 {
-	if (c >= 'a' && c <= 'z')
-		return (1);
-	else
-		return (0);
+	return (c >= 97 && c <= 122);
+
 }
