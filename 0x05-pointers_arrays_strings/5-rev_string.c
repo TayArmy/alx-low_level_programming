@@ -5,6 +5,7 @@
  * rev_string - reverses a string
  * @s: string to be reversed
  */
+
 {
 	char tmp;
 	int i, len, len1;
