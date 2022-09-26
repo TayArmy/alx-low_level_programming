@@ -1,12 +1,12 @@
 #include "main.h"
+
 /**
- * print_chessboard - a function that prints the chessboard
- * @a: dimensional array
+ * print_chessboard - prints chess board
+ * @a: two dimensional array
  */
 void print_chessboard(char (*a)[8])
 {
-	int i;
-	int j;
+int i, j;
 
 	for (i = 0; i < 8; i++)
 	{
@@ -14,6 +14,6 @@ void print_chessboard(char (*a)[8])
 		{
 			_putchar(a[i][j]);
 		}
-		_putchar('\n');
+			_putchar('\n');
 	}
 }
