@@ -1,21 +1,22 @@
 #include "main.h"
 
 /**
- * _memcpy - input
- * @des: input pointer to string destination
- * @sr: input pointer to source type string
- * @n: number of bytes
- * Return: pointer to destination string
+ * *_memcpy -  copies memory area from src to dest
+ * @dest: destination
+ * @src: source
+ * @n: max bytes to use
+ * Return: dest
  */
+
 
 char *_memcpy(char *dest, char *src, unsigned int n)
 {
-unsigned int i = 0;
+	unsigned int i;
 
-while (i < n)
-{
-*(des + i) = *(sr + i);
-i++;
-}
-return (des);
+	for (i = 0; n > 0 ; i++, n--)
+	{
+		dest[i] = src[i];
+	}
+
+	return (dest);
 }
