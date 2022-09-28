@@ -1,72 +1,70 @@
 #include "main.h"
 
+int findstar(char *s, char c, int i, int n);
+
 /**
  * wildcmp - check the code 
  * @s1: string
  * @s2: string
- * Return: Always 0.
+ * Return: 1 or 0
  */
 
 int wildcmp(char *s1, char *s2)
 {
-return (checker(s1, s2, 0, 0, -1));
+	if (*s1 == '\0' && *s2 == '\0')
+	{
+		return (1);
+	}
+	else if (*s1 == '\0' || *s2 == '\0')
+	{
+		if (*s1 == '\0' || *s2 == '*')
+			return (wildcmp(s1, ++s2));
+		else if (*s1 == '*' || *s2 == '\0')
+			return (wildcmp(++s1, s2));
+		return (0);
+	}
+	if (*s1 == *s2)
+	{
+		return (wildcmp(++s1, ++s2));
+	}
+	else if (*s1 == '*')
+	{
+		if (*(s1 + 1) == '*')
+		{
+			return (wildcmp(++s1, s2));
+		}
+		else
+		{
+			return (wildcmp(s1, findstar(s2, *(s1 + 1), 0, 0) + s2));
+		}
+	}
+	else if (*s2 == '*')
+	{
+		if (*(s2 + 1) == '*')
+		{
+			return (wildcmp(s1, ++s2));
+		}
+		else
+		{
+			return (wildcmp(s1 + findstar(s1, *(s2 + 1), 0, 0), s2));
+		}
+	}
+	return (0);
 }
 
 /**
- * checkLast - check last char of s2 when s1 ends
+ * findstar - compares
  * @s: string
- * @i: int
+ * @c: character
+ * @i: iterator
+ * @n: num
  * Return: 0 or 1
  */
-int checkLast(char *s, int i)
+int findstar(char *s, char c, int i, int n)
 {
-if (s[i] == '*')
-	return (checkLast(s, i + 1));
-else if (s[i] == '\0')
-	return (1);
-
-return (0);
-
-}
-/**
- * checker - helper
- * @s1: string
- * @s2: string
- * @a: int
- * @b: int
- * @wildUsed: int
- * Return: Always 0.
- */
-int checker(char *s1, char *s2, int a, int b, int wildUsed)
-{
-
-if (s1[a] != '\0')
-{
-	if (s2[b] == '\0')
-		return (0);
-	else if (s2[b] == '*')
-	{
-		if (s2[b + 1] == '*')
-			return (checker(s1, s2, a, b + 1, b));
-		else if (s2[b + 1] == s1[a])
-			return (checker(s1, s2, a, b + 1, b));
-		else if (s1[a + 1] != s2[b + 1])
-			return (checker(s1, s2, a + 1, b, b));
-		else if (s1[a + 1] == s2[b + 1])
-			return (checker(s1, s2, a + 1, b + 1, b));
-	}
-	else if ((s1[a] == s2[b]) || (s2[b] == '*' && s2[b + 1] == s1[a + 1]))
-		return (checker(s1, s2, a + 1, b + 1, wildUsed));
-
-	if (wildUsed == -1)
-		return (0);
-
-	return (checker(s1, s2, a, wildUsed, wildUsed));
-
-}
-if (s2[b] != '\0')
-	return (checkLast(s2, b));
-
-return (1);
-
+	if (*(s + i) == '\0')
+		return (n + 1);
+	else if (*(s + i) == c || *(s + i) == '*')
+		n = i;
+	return (findstar(s, c, i + 1, n));
 }
