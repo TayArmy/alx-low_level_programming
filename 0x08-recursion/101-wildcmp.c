@@ -1,14 +1,12 @@
 #include "main.h"
 
 int findstar(char *s, char c, int i, int n);
-
 /**
- * wildcmp - check the code 
+ * wildcmp - compares two strings
  * @s1: string
  * @s2: string
  * Return: 1 or 0
  */
-
 int wildcmp(char *s1, char *s2)
 {
 	if (*s1 == '\0' && *s2 == '\0')

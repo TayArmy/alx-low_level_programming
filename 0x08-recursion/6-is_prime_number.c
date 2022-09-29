@@ -1,5 +1,6 @@
 #include "main.h"
 
+int _check(int, int);
 /**
  * is_prime_number - check if n is a prime number
  * @n: int
@@ -10,7 +11,7 @@ int is_prime_number(int n)
 	return (_check(2, n));
 }
 /**
- * _check - check if prime
+ * _check - check if prime 
  * @n: number
  * @i: iterator
  * Return: 0 or 1
@@ -28,5 +29,4 @@ int _check(int n, int i)
 		return (_check(n + 1, i));
 	}
 	return (1);
-
 }
