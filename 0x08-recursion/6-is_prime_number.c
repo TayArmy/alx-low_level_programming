@@ -11,7 +11,7 @@ int is_prime_number(int n)
 	return (_check(2, n));
 }
 /**
- * _check - check if prime 
+ * _check - check if prime
  * @n: number
  * @i: iterator
  * Return: 0 or 1
