@@ -2,85 +2,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int wordcounter(char *str, int pos, char firstchar);
 /**
- * strtow - check the code for ALX School students.
- * @str: string
- * Return: Null or string.
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
+ *
+ * Return: number of words
  */
+int count_word(char *s)
+{
+	int flag, c, w;
 
+	flag = 0;
+	w = 0;
+
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
+
+	return (w);
+}
+/**
+ * **strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
+ */
 char **strtow(char *str)
 {
-	int wc, wlen, getfirstchar, l, i, j;
-	char **p;
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-	for (l = 0; str[l]; l++)
-		;
-	if (str == NULL)
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
 		return (NULL);
-	wc = wordcounter(str, 0, 0);
-	if (l == 0 || wc == 0)
+
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
 		return (NULL);
-	p = malloc((wc + 1) * sizeof(void *));
-	if (p == NULL)
-		return (NULL);
-	for (i = 0, wlen = 0; i < wc; i++)
+
+	for (i = 0; i <= len; i++)
 	{
-		/* Allocate memory for nested elements */
-		wlen = wordcounter(str, i + 1, 0);
-		if (i == 0 && str[i] != ' ')
-			wlen++;
-		p[i] = malloc(wlen * sizeof(char) + 1);
-		if (p[i] == NULL)
+		if (str[i] == ' ' || str[i] == '\0')
 		{
-			for ( ; i >= 0; --i)
-				free(p[i]);
-			free(p);
-			return (NULL);
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
 		}
-		/* initialize each element of the nested array with the word*/
-		getfirstchar = wordcounter(str, i + 1, 1);
-		if (str[0] != ' ' && i > 0)
-			getfirstchar++;
-		else if (str[0] == ' ')
-			getfirstchar++;
-		for (j = 0; j < wlen; j++)
-			p[i][j] = str[getfirstchar + j];
-		p[i][j] = '\0';
+		else if (c++ == 0)
+			start = i;
 	}
-	p[i] = NULL;
-	return (p);
-}
 
-/**
- * wordcounter -counts
- * @str: string
- * @pos: integer
- * @firstchar: character
- * Return: w
- */
-int wordcounter(char *str, int pos, char firstchar)
-{
-	int i, w, c, f;
+	matrix[k] = NULL;
 
-	str[0] != ' ' ? (w = 1) : (w = 0);
-	for (i = 0, f = 0; str[i]; i++)
-	{
-		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0' && f == 0)
-		{
-			w++;
-			f = 1;
-		}
-		if (pos > 0 && pos == w)
-		{
-			if (pos > 0 && pos == w && firstchar > 0)
-				return (i);
-			for (c = 0; str[i + c + 1] != ' '; c++)
-				;
-			return (c);
-		}
-		if (str[i] == ' ')
-			f = 0;
-	}
-	return (w);
+	return (matrix);
 }
