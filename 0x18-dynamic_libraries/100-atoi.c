@@ -1,35 +1,29 @@
 #include "main.h"
 /**
- * _atoi - delete characters and let only numbers
- * @s: string
- * Return: integer
+ * _atoi - int
+ * @s: pointer
+ * Return: int.
  */
 int _atoi(char *s)
 {
-	int i, value, sign;
+	int i;
+	int res = 0;
+	int sig = -1;
+	int brk = 0;
 
-	value = 0;
-	sign = 1;
-
-	for (i = 0; s[i] != '\0' && !(s[i] >= '0' && s[i] <= '9'); i++)
+	for (i = 0; s[i] != '\0'; i++)
 	{
 		if (s[i] == '-')
-		{
-			sign = sign * -1;
-		}
-	}
-
-	for (i = 0; s[i] != 0; i++)
-	{
+			sig = sig * -1;
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			value = value * 10 + sign * (s[i] - '0');
+			res = res * 10;
+			res -= (s[i] - '0');
+			brk = 1;
 		}
-
-		if (value != 0 && !(s[i] >= '0' && s[i] <= '9'))
-		{
-			return (value);
-		}
-	}
-	return (value);
+		else if (brk == 1)
+			break;
+	}	
+	res = sig * res;
+	return (res);
 }
