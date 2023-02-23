@@ -1,38 +1,20 @@
-# Compiler
 CC = gcc
-
-# Source files
-SRC = $(wildcard *.c)
-
-# Object files
+SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
-
-# Executable name
 NAME = school
-
-# Flags
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Programs
-RM := rm -f
+.PHONY: all clean oclean fclean re
 
-# Rules
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(NAME) *~
+	$(RM) *~ $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
 
 fclean: clean oclean
 
-re: fclean all
-
-.PHONY: all clean oclean fclean re
-
-# Dependencies
-$(OBJ): m.h
+re: fclean all 
