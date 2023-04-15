@@ -2,7 +2,6 @@
 #include <math.h>
 
 /**
- * main - Entry point
  * jump_list - searches for a value in an array of
  * integers using the Jump search algorithm
  *

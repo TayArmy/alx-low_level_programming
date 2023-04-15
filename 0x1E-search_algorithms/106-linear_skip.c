@@ -1,7 +1,6 @@
 #include "search_algos.h"
 
 /**
- * main - Entry point
  * linear_skip - searches for a value in a skip list
  *
  * @list: input list
