@@ -6,6 +6,7 @@
  * main - Entry point
  * a function that searches for a value in an array
  * using Linear search algorithms
+ * Linear_search - searches for a value in an array
  *
  * @array: pointer to the first element of the array to search in
  * @size: number of elements in array

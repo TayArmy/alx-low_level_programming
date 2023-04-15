@@ -2,8 +2,14 @@
 
 /**
  * main - Entry point
+ * Binary_search - searches for a value in a sorted array of integers
+ * using binary search
  *
- * Return: Always EXIT_SUCCESS
+ * @array: pointer to the first element of the array to search in
+ * @size: number of elements in array
+ * @value: value to search for
+ * Return: If value is not present in array or if array is NULL, 
+ * 	   your function must return -1
  */
 int _binary_search(int *array, size_t left, size_t right, int value)
 {
