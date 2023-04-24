@@ -1,19 +1,17 @@
 #include "main.h"
+#include <stdio.h>
 /**
- * _puts - function prints a string
- * @str: string
- * Return: nothing
+ * _puts - prints a string to stdout, followed by a new line,
+ * @str: pointer to the string to print
+ *
+ * Return: void
  */
 void _puts(char *str)
 {
-	int index;
-
-	index = 0;
-
-	while (str[index] != '\0')
+	for (; *str != '\0'; str++)
 	{
-		_putchar(str[index]);
-		index++;
+		putchar(*str);
 	}
-	_putchar('\n');
+
+	putchar('\n');
 }

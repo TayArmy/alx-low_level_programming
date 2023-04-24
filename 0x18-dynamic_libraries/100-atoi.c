@@ -1,35 +1,26 @@
 #include "main.h"
+#include <stdio.h>
 /**
- * _atoi - delete characters and let only numbers
- * @s: string
- * Return: integer
+ * _atoi - converts a string to an integer
+ *
+ * @s: string input parameter
+ *
+ * Return: converted integer from string
  */
+
 int _atoi(char *s)
 {
-	int i, value, sign;
+	unsigned int num = 0;
+	int sign = 1;
 
-	value = 0;
-	sign = 1;
+	do {
+		if (*s == '-')
+			sign *= -1;
+		else if (*s >= '0' && *s <= '9')
+			num = (num * 10) + (*s - '0');
+		else if (num > 0)
+			break;
+	} while (*s++);
 
-	for (i = 0; s[i] != '\0' && !(s[i] >= '0' && s[i] <= '9'); i++)
-	{
-		if (s[i] == '-')
-		{
-			sign = sign * -1;
-		}
-	}
-
-	for (i = 0; s[i] != 0; i++)
-	{
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			value = value * 10 + sign * (s[i] - '0');
-		}
-
-		if (value != 0 && !(s[i] >= '0' && s[i] <= '9'))
-		{
-			return (value);
-		}
-	}
-	return (value);
+	return (num * sign);
 }
