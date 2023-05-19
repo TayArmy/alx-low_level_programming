@@ -10,7 +10,7 @@ int main(void)
 	int i = 0;
 	unsigned long int a = 1, b = 2, next = 0;
 
-	while (i < 98)
+	while (i < 97)
 	{
 		next = a + b;
 		a = b;
